@@ -23,4 +23,12 @@ public class LineRepository {
     public static void deleteAll() {
         lines.clear();
     }
+
+    // 라인 이름으로 Line 객체 찾기
+    public static Line findLineByName(String name) {
+        return lines().stream()
+                .filter(s -> s.getName().equals(name))
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
+    }
 }

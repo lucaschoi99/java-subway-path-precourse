@@ -1,9 +1,6 @@
 package subway.domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class StationRepository {
     private static final List<Station> stations = new ArrayList<>();
@@ -23,4 +20,17 @@ public class StationRepository {
     public static void deleteAll() {
         stations.clear();
     }
+
+    private static String getName(Station station) {
+        return station.getName();
+    }
+
+    // 역 이름으로 Station 객체 찾기
+    public static Station findStationByName(String name) {
+        return stations().stream()
+                .filter(s -> s.getName().equals(name))
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
+    }
+
 }
