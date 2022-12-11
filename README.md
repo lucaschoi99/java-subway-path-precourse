@@ -3,6 +3,50 @@
 
 <br>
 
+## 🚀 나의 기능 구현
+> 패키지 분리
+- `domain`: Line, LineRepository, Station, StationRepository
+- `service`: LookUpLogic
+- `validation`: ValidateUserInput
+- `view`: InputView, OutputView
+- `공통`: Application(main), ErrorMessage
+
+> 클래스 기능 소개
+- `Line` 클래스
+  - 지하철 노선 객체.
+- `LineRepository` 클래스
+  - Line 객체를 모아서 저장하는 클래스.
+  - **findLineByName** 메소드를 추가해 노선 객체를 가져오고 존재 여부를 알 수 있다.
+- `Station` 클래스
+  - 지하철 역 객체.
+  - 역에 노선 정보를 관리할 수 있도록 설계.
+- `StationRepository` 클래스
+  - Station 객체를 모아서 저장하는 클래스.
+  - **findLineByName** 메소드를 추가해 역 객체를 가져오고 존재 여부를 알 수 있다.
+- `LookUpLogic` 클래스
+  - 최단 거리, 최소 시간 로직과 총 거리, 총 소요시간 계산 로직의 핵심 기능을 구현하는 클래스.
+  - 생성 시 출발역과 도착역, 그래프 정보를 넘겨받아 주요 로직을 수행한다.
+- `ValidateUserInput` 클래스
+  - 사용자 입력 값에 대한 검증을 하는 클래스.
+  - 기대하지 않은 사용자 입력 값이 들어오면 예외처리를 통해 처리할 수 있도록 한다.
+- `InputView` 클래스
+  - 사용자 입력에 대한 부분을 담당하는 클래스.
+  - 사용자 입력을 읽고 검증 클래스를 거친 뒤 올바른 값 또는 예외를 던진다.
+- `OutputView` 클래스
+  - 프로그램 흐름에 맞게 기대하는 출력을 담당하는 클래스.
+  - 출력 형식을 맞춰 안내 문구와 결과를 출력한다.
+- `Application` 클래스
+  - 프로그램 흐름 로직을 담당하는 클래스.
+  - **init** 메서드를 통해 역, 노선 객체를 생성하고 거리 그래프와 시간 가중치 그래프에 연결 정보를 입력한다. 
+  - **mainLoop** 메서드를를 통해 사용자의 입력 값에 따른 프로그램을 수행한다.
+  - 최단 거리, 최소 시간의 공통 로직을 담당하는 **commonPathLogic** 메서드를 생성하고 LookUpLogic 클래스의 **shortestPathList**, **computeWeight** 메서드에 각각 다른 그래프를 넘김으로써 기능을 구현한다.
+- `ErrorMessage` 클래스
+  - 기대하지 않은 입력값에 대한 에러 메세지를 모아 관리하는 **enum** 클래스.
+  - 예외처리 시 출력 문구를 가독성 있게 보일 수 있고 문구 추가 시에도 쉽게 관리할 수 있다.  
+
+
+<br>
+
 ## 🚀 기능 요구사항
 
 > 프리코스 3주차 미션에서 사용한 코드를 참고해도 무관하다. 
